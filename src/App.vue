@@ -4,13 +4,29 @@
 </template>
 
 <script lang="ts">
+import { useQuery } from '@apollo/client';
+import gql from 'graphql-tag';
 import { defineComponent } from 'vue';
+import type { Pokemon } from '@/types/pokemon';
 import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     HelloWorld,
+  },
+  setup() {
+    const { data } = useQuery<Pokemon[]>(gql`
+      query getPokemons($first: Int!){
+        pokemons(first: $first){
+          id
+          number
+          name
+          types
+          image
+        }
+      }
+    `);
   },
 });
 </script>
