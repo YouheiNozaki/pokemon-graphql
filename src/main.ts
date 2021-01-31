@@ -4,7 +4,7 @@ import { DefaultApolloClient } from '@vue/apollo-composable';
 import App from './App.vue';
 
 const defaultClient = new ApolloClient({
-  uri: 'https://graphql-pokemon2.vercel.app',
+  uri: 'http://localhost:5000/',
   cache: new InMemoryCache(),
 });
 

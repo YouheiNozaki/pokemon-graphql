@@ -1,6 +1,8 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <!-- <div v-for="pokemon in data.pokemons" :key="pokemon.id">
+    <h2>{{ pokemon.name }}</h2>
+  </div> -->
+  <div>Hello world</div>
 </template>
 
 <script lang="ts">
@@ -8,24 +10,13 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import { defineComponent } from 'vue';
 import type { Pokemon } from '@/types/pokemon';
-import HelloWorld from './components/HelloWorld.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld,
-  },
+
   setup() {
-    const { data } = useQuery<Pokemon[]>(gql`
-      query getPokemons($first: Int!){
-        pokemons(first: $first){
-          id
-          number
-          name
-          types
-          image
-        }
-      }
+    const { data, loading, error } = useQuery<Pokemon[]>(gql`
+
     `);
   },
 });
